@@ -5,7 +5,7 @@
 1. [Project Overview](#project-overview)
 2. [Technologies Used](#technologies-used)
 3. [Features](#features)
-4. [Streamlit Output Visualization](#streamlit-output-visualization)
+4. [Streamlit UI](#streamlit-ui)
 5. [Approach](#approach)
 6. [Testing](#testing)
 7. [Results](#results)
@@ -34,7 +34,7 @@ BizCardX is a Streamlit application designed to extract relevant information fro
 - CRUD (Create, Read, Update, Delete) functionality for managing stored data.
 - Continuous improvement through bug fixes and feature enhancements.
 
-## Streamlit Output Visualization
+## Streamlit UI
 
 ![Screenshot (320)](https://github.com/asdesilva3/BizCardX/assets/148002331/c9967300-5466-49af-bb19-d63269f2406a)
 
