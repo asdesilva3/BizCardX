@@ -1,0 +1,10 @@
+# Required packages
+
+easyocr
+opencv-python
+pillow
+matplotlib
+pandas
+streamlit
+streamlit-option-menu
+mysql-connector-python
