@@ -53,8 +53,8 @@ def image_preview(image,res):
 # FUNCTION TO CONVERT IMAGE TO BINARY FORMAT
 def img_to_binary(path):
     with open(path, 'rb') as image:
-        binaryData = image.read()
-    return binaryData
+        binary_data = image.read()
+    return binary_data
 
 # FUNCTION TO EXTRACT REQUIRED TEXT FROM RESULT  
 def extracted_text(result,saved_img):
