@@ -52,7 +52,7 @@ def image_preview(image,res):
 
 # FUNCTION TO CONVERT IMAGE TO BINARY FORMAT
 def img_to_binary(path):
-    with open(path, 'rb') as image:
+    with open(path, 'rb') as image:  #binary read mode
         binary_data = image.read()
     return binary_data
 
