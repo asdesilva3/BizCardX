@@ -15,11 +15,11 @@ reader = easyocr.Reader(['en'])
 #_________________________________________________________________________________________________________________________________________
 
 # SETTING PAGE CONFIGURATIONS
-icon = Image.open("idcard.ico")
+icon = Image.open("idcard.ico") #add your icon 
 st.set_page_config(page_title= "BizCardX",
                    page_icon= icon,
                    layout= "wide",
-                   menu_items={'About': """# This OCR is created by *Desilva*!"""})
+                   menu_items={'About': "### This page is created by Desilva!"})
 
 st.markdown("<h1 style='text-align: center; color: purple;'>BizCardX: Extracting Business Card Data with easy OCR</h1>", unsafe_allow_html=True)
 
@@ -57,7 +57,6 @@ def img_to_binary(path):
     return binaryData
 
 # FUNCTION TO EXTRACT REQUIRED TEXT FROM RESULT  
-
 def extracted_text(result,saved_img):
     details = {
         "Name": [],
@@ -68,8 +67,7 @@ def extracted_text(result,saved_img):
         "Website": [],
         "Address": [],
         "Pincode": [],
-        "Image": img_to_binary(saved_img)
-    }
+        "Image": img_to_binary(saved_img)}
 
     # Define regular expression pattern to match 6-digit numbers
     pincode_pattern = re.compile(r'\b\d{6,7}\b')
@@ -106,7 +104,7 @@ def extracted_text(result,saved_img):
             remove_colon = re.sub(r'[;]', '', item)
             details["Address"].append(remove_colon)
 
-    # Join the lists of phone numbers, website URLs, and company names
+    # Join the lists of phone numbers, website URLs, and company name
     details["Contact"].append(", ".join(phone_numbers))
     details["Website"].append(", ".join(website_urls))
     details["Company_Name"].append(' '.join(company_names).strip().title())
@@ -120,7 +118,7 @@ if selected == "HOME":
         st.markdown("### BizCardX extracts business card data via OCR, storing it in a database, with Streamlit GUI enabling easy data management, including read, update, and delete functionalities.")
         st.write("")
         st.markdown("### :orange[**Technologies Used:**]")
-        st.markdown("### Python,easy OCR, Matplotlib, Streamlit, MySQL, Pandas")           
+        st.markdown("### Python, EasyOCR, Matplotlib, Streamlit, MySQL and Pandas")           
 
 # UPLOAD AND EXTRACT MENU
 if selected == "UPLOAD":
@@ -129,12 +127,10 @@ if selected == "UPLOAD":
     uploaded_cards = st.file_uploader("Upload here", label_visibility="hidden", type=["png", "jpeg", "jpg"],accept_multiple_files=True)
     
     all_dfs = []
-
     if uploaded_cards is not None:
         all_dfs.clear()  # Reset the list before processing new images
 
         for index, uploaded_card in enumerate(uploaded_cards):
-
             # save card in the folder called "Cards"
             with open(os.path.join("cards", uploaded_card.name), "wb") as f:
                 f.write(uploaded_card.getbuffer())
@@ -160,33 +156,26 @@ if selected == "UPLOAD":
                     st.markdown(f"### Image Processed Card - {uploaded_card.name}")
                     st.pyplot(image_preview(image,res)) 
                 
-            result = reader.readtext(saved_img, detail=0, paragraph=False)        
-                    
+            result = reader.readtext(saved_img, detail=0, paragraph=False)            
             card_details = extracted_text(result,saved_img)
             
             df = pd.DataFrame(card_details)
-
             all_dfs.append(df)
-
 
         if all_dfs:  # Check if there are any processed details
             combined_df = pd.concat(all_dfs, ignore_index=True)
             st.success("### Data Extracted Successfully for all images!")
             st.write(combined_df, width=1000)
 
-
             #MySQL CONNECTION
             connection  = mysql.connector.connect(user='root', 
-                                                password='desilva14', 
+                                                password='YOUR_PASSWORD', #change to your password
                                                 host='localhost', 
-                                                database="bizcardx")
-
+                                                database="bizcardx") #change to your database name
             cursor = connection.cursor(buffered=True)
 
             # TRANSFERRING DATA TO SQL
- 
             if st.button("Upload to Database"):
-
                 # Define the table creation query
                 create_table_query = '''CREATE TABLE IF NOT EXISTS card_details
                                         (ID INT AUTO_INCREMENT PRIMARY KEY,
@@ -227,26 +216,24 @@ if selected == "UPLOAD":
 if selected == "VIEW":
     #MySQL CONNECTION
     connection  = mysql.connector.connect(user='root', 
-                                        password='desilva14', 
+                                        password='YOUR_PASSWORD', #change to your password
                                         host='localhost', 
-                                        database="bizcardx")
+                                        database="bizcardx") #change to your database name
 
     cursor = connection.cursor(buffered=True)       
     
-    #if st.button(":blue[View updated data]"):
     cursor.execute("select Name, Designation, Company_Name, Contact, Email, Website, Address, Pincode from card_details")
     updated_df = pd.DataFrame(cursor.fetchall(), columns=["Name", "Designation", "Company_Name", 
                                                         "Contact", "Email", "Website", "Address", "Pincode"])
-    
     st.write(updated_df)
     connection.close()
 
 if selected == "ALTER":
     #MySQL CONNECTION
     connection  = mysql.connector.connect(user='root', 
-                                        password='desilva14', 
+                                        password='YOUR_PASSWORD', #change to your password
                                         host='localhost', 
-                                        database="bizcardx")
+                                        database="bizcardx") #change to your database name
 
     cursor = connection.cursor(buffered=True)
 
@@ -299,7 +286,6 @@ if selected == "ALTER":
                         WHERE Name=%s""", (Name, Designation, Company_Name, Contact, Email, Website, Address, Pincode, selected_card))
 
                 connection.commit()
-
                 st.success("Information Updated in Database Successfully.")
                 connection.close()
     except:
@@ -308,10 +294,9 @@ if selected == "ALTER":
 if selected == "DELETE":
     #MySQL CONNECTION
     connection  = mysql.connector.connect(user='root', 
-                                        password='desilva14', 
+                                        password='YOUR_PASSWORD', #change to your password
                                         host='localhost', 
-                                        database="bizcardx")
-
+                                        database="bizcardx") #change to your database name
     cursor = connection.cursor(buffered=True)
 
     try:
@@ -339,4 +324,4 @@ if selected == "DELETE":
     except:
         st.warning("There is no data available in the database")
  
-#________________________________END________________________________________________
+#_____________________________________END________________________________________________
