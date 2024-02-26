@@ -5,7 +5,7 @@
 1. [Project Overview](#project-overview)
 2. [Technologies Used](#technologies-used)
 3. [Features](#features)
-4. [Streamlit UI](#streamlit-ui)
+4. [Workflow](#workflow)
 5. [Approach](#approach)
 6. [Testing](#testing)
 7. [Results](#results)
@@ -36,7 +36,7 @@ BizCardX is a Streamlit application designed to extract relevant information fro
 
 ## Streamlit UI
 
-![Screenshot (320)](https://github.com/asdesilva3/BizCardX/assets/148002331/c9967300-5466-49af-bb19-d63269f2406a)
+![BizCardX_Workflow](https://github.com/asdesilva3/BizCardX/assets/148002331/f46270aa-3561-4509-aab6-d82da39ae000)
 
 
 ## Approach
