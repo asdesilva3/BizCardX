@@ -34,7 +34,7 @@ BizCardX is a Streamlit application designed to extract relevant information fro
 - CRUD (Create, Read, Update, Delete) functionality for managing stored data.
 - Continuous improvement through bug fixes and feature enhancements.
 
-## Streamlit UI
+## Workflow
 
 ![BizCardX_Workflow](https://github.com/asdesilva3/BizCardX/assets/148002331/f46270aa-3561-4509-aab6-d82da39ae000)
 
