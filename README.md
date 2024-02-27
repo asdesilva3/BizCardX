@@ -36,7 +36,7 @@ BizCardX is a Streamlit application designed to extract relevant information fro
 
 ## Workflow
 
-![BizCardX_Workflow](https://github.com/asdesilva3/BizCardX/assets/148002331/f46270aa-3561-4509-aab6-d82da39ae000)
+![BizCardX_New](https://github.com/asdesilva3/BizCardX/assets/148002331/a18ed064-162c-45d5-ae5e-89ecf6704087)
 
 
 ## Approach
